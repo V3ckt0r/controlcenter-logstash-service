@@ -1,0 +1,45 @@
+{
+     "Title": "elasticsearch-cluster",
+     "Name": "Elasticsearch",
+     "Version": "1.4.2",
+     "Launch": "auto",
+     "Command": "/usr/local/elasticsearch/bin/elasticsearch",
+     "ImageID": "elasticsearch-example",
+     "Instances": {
+        "Default": 1
+     },
+
+     "ConfigFiles": {
+          "/usr/local/elasticsearch/config/elasticsearch.yml": {
+               "FileName": "/usr/local/elasticsearch/config/elasticsearch.yml",
+               "Owner": "root:root",
+               "Permissions": "0664"
+          },
+          "/usr/local/elasticsearch/config/logging.yml": {
+               "FileName": "/usr/local/elasticsearch/config/logging.yml",
+               "Owner": "root:root",
+               "Permissions": "0664"
+          }
+     },
+
+     "Endpoints": [
+          {
+               "Name": "elasticsearch",
+               "Application": "elasticsearch",
+               "PortNumber": 9200,
+               "Protocol": "tcp",
+               "Purpose": "export",
+               "Vhosts": ["elasticsearch"]
+          }
+     ],
+
+     "Volumes": [
+          {
+               "Owner": "root:root",
+               "Permission": "0755",
+               "ResourcePath": "elasticsearch-data",
+               "ContainerPath": "/var/data/elasticsearch"
+          }
+     ]
+}
+
